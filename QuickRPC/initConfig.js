@@ -36,4 +36,5 @@ module.exports = async () => {
 	await downloadFile(Games + '/OBS.json');
 	await downloadFile(Games + '/Roblox.json');
 	await downloadFile(Games + '/Streamlabs.json');
+	await downloadFile('Config.json');
 };
