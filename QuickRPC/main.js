@@ -115,7 +115,7 @@ const updateVars = async () => {
 	currentGameIcon = game.Icon || 'Default_Small';
 	currentGame = game.DisplayName || 'Unknown';
 	currentGamePrefix = game.Prefix || 'Playing';
-	smallText = `${currentGame || 'Unknown'} (Priority: ${game.Priority})`;
+	smallText = `${currentGame || 'Unknown'} (Priority: ${game.Priority || 0})`;
 };
 
 const { app, BrowserWindow } = require('electron');
