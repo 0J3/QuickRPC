@@ -4,3 +4,4 @@ browser.js
 test/auth.js
 docs-out
 Config/Quotes.txt
+*.log
