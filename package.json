@@ -42,7 +42,7 @@
 		"@types/node": "^15.6.0",
 		"babel-eslint": "^10.0.3",
 		"discord.js-docgen": "github:discordjs/docgen",
-		"electron": "^7.1.9",
+		"electron": "^9.4.0",
 		"eslint": "^6.1.0",
 		"eslint-config-airbnb-base": "14.0.0",
 		"eslint-plugin-import": "^2.18.2",
