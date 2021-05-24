@@ -64,6 +64,8 @@ const getGames = () => {
 		});
 	});
 
+	fs.writeFileSync('games-readonly.json', JSON.stringify(games));
+
 	return games;
 };
 const getQuotes = () => {
@@ -106,13 +108,14 @@ const updateVars = async () => {
 		const v = await checkIfProcessIsRunning(g.Exe);
 		if (v) {
 			game = g;
+			break;
 		}
 	}
 
 	currentGameIcon = game.Icon || 'Default_Small';
 	currentGame = game.DisplayName || 'Unknown';
 	currentGamePrefix = game.Prefix || 'Playing';
-	smallText = currentGame || 'Unknown';
+	smallText = `${currentGame || 'Unknown'} (Priority: ${game.Priority})`;
 };
 
 const { app, BrowserWindow } = require('electron');
@@ -208,7 +211,7 @@ async function setActivity() {
 	);
 	mainWindow.webContents.executeJavaScript(
 		`document.getElementById('CurrentGame').innerHTML=decodeURIComponent("${encodeURIComponent(
-			currentGame || 'Unknown'
+			smallText
 		)}")`
 	);
 }

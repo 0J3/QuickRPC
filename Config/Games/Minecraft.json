@@ -3,6 +3,6 @@
 	"Prefix": "Playing",
 	"DisplayName": "Minecraft",
 	"Enabled": true,
-	"Icon": "Mc",
+	"Icon": "minecraft",
 	"Priority": 3
 }

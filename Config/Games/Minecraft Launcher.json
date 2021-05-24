@@ -1,0 +1,8 @@
+{
+	"Exe": "MinecraftLauncher.exe",
+	"Prefix": "Playing",
+	"DisplayName": "Minecraft Launcher",
+	"Enabled": true,
+	"Icon": "minecraft",
+	"Priority": 2
+}

@@ -1,0 +1,8 @@
+{
+	"Exe": "obs.exe",
+	"Prefix": "Running",
+	"DisplayName": "OBS",
+	"Enabled": true,
+	"Icon": "obs",
+	"Priority": 0
+}
