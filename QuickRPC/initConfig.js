@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = async () => {
+module.exports = async flag => {
 	const Fs = require('fs-extra');
 	const Path = require('path');
 	const Axios = require('axios');
@@ -26,15 +26,18 @@ module.exports = async () => {
 		});
 	}
 
-	const Games = (
-		require('../Config/Config.json').GamesFolder || 'Games'
-	).replace(pathPrefix, '');
-
-	await downloadFile(Games + '/GenshinImpact.json');
-	await downloadFile(Games + '/Minecraft Launcher.json');
-	await downloadFile(Games + '/Minecraft.json');
-	await downloadFile(Games + '/OBS.json');
-	await downloadFile(Games + '/Roblox.json');
-	await downloadFile(Games + '/Streamlabs.json');
-	await downloadFile('Config.json');
+	if (flag == 'onlyMainConfig') {
+		await downloadFile('Config.json');
+		return;
+	} else if (flag == 'onlyGames') {
+		const Games = (
+			require('../Config/Config.json').GamesFolder || 'Games'
+		).replace(pathPrefix, '');
+		await downloadFile(Games + '/GenshinImpact.json');
+		await downloadFile(Games + '/Minecraft Launcher.json');
+		await downloadFile(Games + '/Minecraft.json');
+		await downloadFile(Games + '/OBS.json');
+		await downloadFile(Games + '/Roblox.json');
+		await downloadFile(Games + '/Streamlabs.json');
+	}
 };

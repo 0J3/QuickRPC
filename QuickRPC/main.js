@@ -2,10 +2,11 @@
 
 /* eslint-disable no-console */
 (async () => {
-	const path = require('path'),
-		fs = require('fs-extra');
+	const { confjson, gamesFolder, quotesFile } = await require('./ensureConf')(),
+		path = require('path'),
+		fs = require('fs-extra'),
+		getpid = require('getpid');
 
-	const getpid = require('getpid');
 	const checkIfProcessIsRunning = name => {
 		return new Promise(res => {
 			getpid(name, (err, pid) => {
@@ -26,24 +27,6 @@
 			});
 		});
 	};
-
-	const confjson = require('../Config/Config.json');
-
-	const gamesFolder = path.resolve(confjson.GamesFolder || 'Config/Games');
-	const quotesFile = path.resolve(confjson.QuotesFile || 'Config/Quotes.txt');
-	if (!fs.existsSync(gamesFolder)) {
-		fs.ensureDirSync(gamesFolder);
-
-		const initConf = require('./initConfig');
-		await initConf();
-	}
-	fs.ensureFileSync(quotesFile);
-	if (fs.readFileSync(quotesFile) == '') {
-		fs.writeFileSync(
-			quotesFile,
-			'// Each quote is on one line - Empty lines and lines starting with `//` are ignored.\nHello there\n'
-		);
-	}
 
 	const getGames = () => {
 		const gamesJSONList = fs.readdirSync(gamesFolder);
@@ -169,16 +152,18 @@
 		mainWindow.setOpacity(0.5);
 	};
 
-	app.on('ready', createWindow);
+	app.whenReady().then(() => {
+		createWindow();
+
+		app.on('activate', () => {
+			// On macOS it's common to re-create a window in the app when the
+			// dock icon is clicked and there are no other windows open.
+			if (BrowserWindow.getAllWindows().length === 0) createWindow();
+		});
+	});
 
 	app.on('window-all-closed', () => {
 		app.quit();
-	});
-
-	app.on('activate', () => {
-		if (mainWindow === null) {
-			createWindow();
-		}
 	});
 
 	// Set this to your Client ID.
