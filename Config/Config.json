@@ -1,0 +1,7 @@
+{
+	"ClientID": "846429751803641887",
+	"GamesFolder": "Config/Games",
+	"QuotesFile": "Config/Quotes.txt",
+	"Button1": { "label": "Pgoger Vidoe", "url": "https://media.nora.lgbt/hri/" },
+	"Button2": { "label": "About me", "url": "https://nora.lgbt/bio/" }
+}

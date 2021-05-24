@@ -1,0 +1,38 @@
+html {
+	overflow: hidden !important;
+	background: #000000;
+	color: #ffffff;
+}
+body {
+	height: calc(100vh - 40px);
+	width: calc(100vw - 40px);
+	position: fixed;
+	left: 0;
+	top: 0;
+	cursor: default;
+	font-family: sans-serif;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-app-region: drag;
+	text-align: center;
+	margin: 20px 20px;
+	overflow: hidden !important;
+}
+
+h1 {
+	margin: auto;
+	/* padding-top: 1em; */
+}
+
+#snek {
+	margin: auto;
+}
+
+#boops {
+	text-align: center;
+	-webkit-app-region: no-drag;
+}

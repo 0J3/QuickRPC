@@ -1,0 +1,8 @@
+{
+	"Exe": "javaw.exe",
+	"Prefix": "Playing",
+	"DisplayName": "Minecraft",
+	"Enabled": true,
+	"Icon": "Mc",
+	"Priority": 3
+}

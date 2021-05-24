@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>QuickRPC</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<h1>QuickRPC</h1>
+		<small
+			><a
+				style="color: #00c3ff"
+				href="JavaScript:require('child_process').exec('explorer '+require('path').resolve('./Config/'),()=>{})"
+				>Open Config Folder</a
+			></small
+		>
+		<p>Current Quote: <span id="CurrentQuote">Please Wait...</span></p>
+		<p>Current Game: <span id="CurrentGame">Please Wait...</span></p>
+
+		<!-- <button id="game"><div id="snek">Update</div></button> -->
+
+		<script src="renderer.js"></script>
+	</body>
+</html>
