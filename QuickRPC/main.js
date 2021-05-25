@@ -161,7 +161,7 @@
 		});
 
 		mainWindow.setMenuBarVisibility(false);
-		mainWindow.setAlwaysOnTop(true);
+		mainWindow.setAlwaysOnTop(true, 'screen-saver'); // screen-saver to go ontop of fullscreen windows
 		mainWindow.setOpacity(0.5);
 	};
 
