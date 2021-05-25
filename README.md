@@ -1,6 +1,6 @@
 # QuickRPC
 
-Basically [https://github.com/discordjs/RPC](https://github.com/discordjs/RPC) but with improvements
+Basically [https://github.com/discordjs/RPC](https://github.com/discordjs/RPC) but with improvements<br/>
 Figure out how to use this yourself lol
 
 ---
