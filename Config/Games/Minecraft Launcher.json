@@ -4,5 +4,5 @@
 	"DisplayName": "Minecraft Launcher",
 	"Enabled": true,
 	"Icon": "minecraft",
-	"Priority": 12
+	"Priority": 4
 }

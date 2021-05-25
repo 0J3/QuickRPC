@@ -3,6 +3,6 @@
 	"Prefix": "Listening to ",
 	"DisplayName": "Music",
 	"Enabled": true,
-	"Icon": "Spotify",
-	"Priority": 1
+	"Icon": "spotify",
+	"Priority": 2
 }
