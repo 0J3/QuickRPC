@@ -23,16 +23,13 @@
 	},
 	"scripts": {
 		"lint": "eslint src test --ext=js",
-		"docs": "mkdir -p docs-out && docgen --source src --output docs-out/master.json --jsdoc jsdoc.json --custom docgen.json",
-		"start": "electron QuickRPC/main.js",
-		"build:browser": "webpack-cli",
-		"prepublishOnly": "npm run lint && npm run build:browser"
+		"start": "electron QuickRPC/main.js"
 	},
 	"dependencies": {
 		"axios": "^0.21.1",
 		"discord.js": "^12.5.3",
 		"fs-extra": "^10.0.0",
-		"getpid": "^0.0.1",
+		"getpid": "https://github.com/0J3-2/getpid.git",
 		"node-fetch": "^2.6.1",
 		"ws": "^7.3.1"
 	},
