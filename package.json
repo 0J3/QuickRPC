@@ -1,6 +1,6 @@
 {
 	"name": "quickrpc",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Fork of Discord.JS/RPC designed for having a better status or smthn",
 	"keywords": [
 		"discord",

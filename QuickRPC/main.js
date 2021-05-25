@@ -122,8 +122,8 @@
 			});
 		});
 
-		if (isFlag('writeGameListJson'))
-			fs.writeFileSync('games-readonly.json', JSON.stringify(games));
+		if (isFlag('debugDump', 'allDump', 'gameDump', 'allDebug'))
+			dump('games.json', games);
 
 		return games;
 	};
@@ -180,7 +180,7 @@
 		currentGamePrefix = game.Prefix || 'Playing';
 		smallText = `${currentGame || 'Unknown'} (Priority: ${game.Priority || 0})`;
 
-		if (isFlag('debugDump', 'varDump', 'allDebug'))
+		if (isFlag('debugDump', 'allDump', 'varDump', 'allDebug'))
 			dump('vars.json', {
 				exposedVars: {
 					currentGameIcon,
@@ -300,7 +300,7 @@
 			.split('\\')
 			.join('\\\\\\\\')}\\"',()=>{})"`);
 
-		if (isFlag('debugDump', 'activityDump', 'allDebug'))
+		if (isFlag('debugDump', 'allDump', 'activityDump', 'allDebug'))
 			dump('activity.json', act);
 	}
 
