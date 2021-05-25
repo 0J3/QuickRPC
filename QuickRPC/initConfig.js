@@ -41,10 +41,5 @@ module.exports = async flag => {
 		).replace(pathPrefix, '');
 		Fs.ensureDirSync(Path.resolve(Games));
 		await downloadFile(Games + '/GenshinImpact.json');
-		await downloadFile(Games + '/Minecraft Launcher.json');
-		await downloadFile(Games + '/Minecraft.json');
-		await downloadFile(Games + '/OBS.json');
-		await downloadFile(Games + '/Roblox.json');
-		await downloadFile(Games + '/Streamlabs.json');
 	}
 };

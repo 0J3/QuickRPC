@@ -1,6 +1,7 @@
 'use strict';
 
 /* eslint-disable no-console */
+
 (async () => {
 	console.log('app start');
 	const { confjson, gamesFolder, quotesFile, confDir } =
@@ -8,6 +9,15 @@
 		path = require('path'),
 		fs = require('fs-extra'),
 		getpid = require('getpid');
+
+	const isFlag = flag => {
+		fs.ensureFileSync(path.resolve(confDir, '.flags'));
+
+		return fs
+			.readFileSync(path.resolve(confDir, '.flags'))
+			.toString()
+			.includes('--' + flag);
+	};
 
 	const checkIfProcessIsRunning = name => {
 		return new Promise(res => {
@@ -58,7 +68,8 @@
 			});
 		});
 
-		fs.writeFileSync('games-readonly.json', JSON.stringify(games));
+		if (isFlag('writeGameListJson'))
+			fs.writeFileSync('games-readonly.json', JSON.stringify(games));
 
 		return games;
 	};
@@ -191,7 +202,7 @@
 			state: `${currentGamePrefix} ${currentGame || 'Unknown'}`,
 			startTimestamp,
 			largeImageKey: 'large_icon',
-			largeImageText: 'Status',
+			largeImageText: '0J3 / QuickRPC',
 			smallImageKey: currentGameIcon.toLowerCase(),
 			smallImageText: smallText,
 			instance: false,
@@ -229,9 +240,10 @@
 			setActivity();
 		}, 15e3);
 
-		require('./updateGameList')().then(() => {
-			console.log('Updated Game List!');
-		});
+		if (!isFlag('noUpdateGameList'))
+			require('./updateGameList')(gamesFolder).then(() => {
+				console.log('Updated Game List!');
+			});
 	});
 
 	rpc.login({ clientId }).catch(console.error);

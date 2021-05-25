@@ -1,13 +1,13 @@
-module.exports = async () => {
+module.exports = async gamesDir => {
 	const path = require('path');
 	const fs = require('fs');
 	const axios = require('axios');
 
 	async function downloadFile(url, file) {
 		const writer = fs.createWriteStream(path.resolve(file));
-		console.log(p, '->', url);
+		console.log(file, '->', url);
 
-		const response = await Axios({
+		const response = await axios({
 			url,
 			method: 'GET',
 			responseType: 'stream',
@@ -21,12 +21,13 @@ module.exports = async () => {
 		});
 	}
 
-	axios({
+	const { data } = await axios({
 		url: 'https://0j3.github.io/QuickRPC/Config/gameList.json',
 		method: 'GET',
 		responseType: 'json',
-	}).then(response => {
-		console.log(response.body);
+	});
+	const { list } = data;
+	list.forEach(item => {
+		downloadFile(data.root + item, path.resolve(gamesDir, item));
 	});
 };
-module.exports();
