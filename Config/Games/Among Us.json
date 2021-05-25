@@ -4,5 +4,5 @@
 	"DisplayName": "Among Us",
 	"Enabled": true,
 	"Icon": "amongus",
-	"Priority": 1
+	"Priority": 10
 }

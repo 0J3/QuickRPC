@@ -1,0 +1,8 @@
+{
+	"Exe": "Spotify.exe",
+	"Prefix": "Listening to ",
+	"DisplayName": "Music",
+	"Enabled": true,
+	"Icon": "Spotify",
+	"Priority": 1
+}
