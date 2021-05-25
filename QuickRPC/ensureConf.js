@@ -1,27 +1,26 @@
 const { app } = require('electron');
+const userData = app.getPath('userData');
 module.exports = async () => {
 	const fs = require('fs-extra'),
 		path = require('path');
 
+	const confDir = path.resolve(userData, 'Config');
+
 	const initConf = require('./initConfig');
-	if (
-		!fs.existsSync(path.resolve(app.getPath('userData'), 'Config/Config.json'))
-	) {
-		fs.ensureDirSync(path.resolve(app.getPath('userData'), 'Config'));
+	if (!fs.existsSync(path.resolve(userData, 'Config/Config.json'))) {
+		fs.ensureDirSync(confDir);
 		await initConf('onlyMainConfig');
 	}
-	let confjson = fs.readFileSync(
-		path.resolve(app.getPath('userData'), 'Config/Config.json')
-	);
+	let confjson = fs.readFileSync(path.resolve(userData, 'Config/Config.json'));
 	confjson = JSON.parse(confjson);
 
 	const gamesFolder = path.resolve(
-		app.getPath('userData'),
+		userData,
 		'Config',
 		confjson.GamesFolder || 'Games'
 	);
 	const quotesFile = path.resolve(
-		app.getPath('userData'),
+		userData,
 		'Config',
 		confjson.QuotesFile || 'Quotes.txt'
 	);
@@ -37,5 +36,5 @@ module.exports = async () => {
 			'// Each quote is on one line - Empty lines and lines starting with `//` are ignored.\nHello there\n'
 		);
 	}
-	return { confjson, gamesFolder, quotesFile };
+	return { confjson, gamesFolder, quotesFile, confDir };
 };

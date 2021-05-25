@@ -1,13 +1,13 @@
 'use strict';
 
 module.exports = async flag => {
-	const { app } = require('electron');
+	const userData = require('electron').app.getPath('userData');
 	const Fs = require('fs-extra');
 	const Path = require('path');
 	const Axios = require('axios');
 
 	const prefix = 'https://0j3.github.io/QuickRPC/Config/';
-	const pathPrefix = Path.join(app.getPath('userData'), 'Config') + '/';
+	const pathPrefix = Path.join(userData, 'Config') + '/';
 
 	Fs.ensureDirSync(pathPrefix);
 
@@ -36,10 +36,10 @@ module.exports = async flag => {
 		return;
 	} else if (flag == 'onlyGames') {
 		const Games = (
-			require(Path.resolve(app.getPath('userData'), 'Config/Config.json'))
-				.GamesFolder || 'Games'
+			require(Path.resolve(userData, 'Config/Config.json')).GamesFolder ||
+			'Games'
 		).replace(pathPrefix, '');
-		Fs.ensureDirSync(Games);
+		Fs.ensureDirSync(Path.resolve(Games));
 		await downloadFile(Games + '/GenshinImpact.json');
 		await downloadFile(Games + '/Minecraft Launcher.json');
 		await downloadFile(Games + '/Minecraft.json');

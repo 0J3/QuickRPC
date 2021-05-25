@@ -2,7 +2,9 @@
 
 /* eslint-disable no-console */
 (async () => {
-	const { confjson, gamesFolder, quotesFile } = await require('./ensureConf')(),
+	console.log('app start');
+	const { confjson, gamesFolder, quotesFile, confDir } =
+			await require('./ensureConf')(),
 		path = require('path'),
 		fs = require('fs-extra'),
 		getpid = require('getpid');
@@ -214,6 +216,10 @@
 				smallText
 			)}")`
 		);
+		mainWindow.webContents.executeJavaScript(`
+		document.getElementById('openConf').href="JavaScript:require('child_process').exec('explorer \\"${confDir
+			.split('\\')
+			.join('\\\\\\\\')}\\"',()=>{})"`);
 	}
 
 	rpc.on('ready', () => {

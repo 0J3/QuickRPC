@@ -6,3 +6,4 @@ docs-out
 Config/Quotes.txt
 *.log
 Games.old
+dist
