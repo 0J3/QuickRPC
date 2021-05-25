@@ -1,0 +1,13 @@
+{
+	"root": "https://0j3.github.io/QuickRPC/Config/Games/",
+	"list": [
+		"Among Us.json",
+		"GenshinImpact.json",
+		"Minecraft Launcher.json",
+		"Minecraft.json",
+		"OBS.json",
+		"Roblox.json",
+		"Streamlabs.json",
+		"TSW2.json"
+	]
+}

@@ -228,6 +228,10 @@
 		setInterval(() => {
 			setActivity();
 		}, 15e3);
+
+		require('./updateGameList')().then(() => {
+			console.log('Updated Game List!');
+		});
 	});
 
 	rpc.login({ clientId }).catch(console.error);

@@ -3,5 +3,6 @@
 	"GamesFolder": "Games",
 	"QuotesFile": "Quotes.txt",
 	"Button1": { "label": "Pgoger Vidoe", "url": "https://media.nora.lgbt/hri/" },
-	"Button2": { "label": "About me", "url": "https://nora.lgbt/bio/" }
+	"Button2": { "label": "About me", "url": "https://nora.lgbt/bio/" },
+	"GameListVers": 0
 }
