@@ -10,25 +10,68 @@
 		fs = require('fs-extra'),
 		getpid = require('getpid');
 
-	const isFlag = flag => {
+	const getFlagValue = flag => {
 		fs.ensureFileSync(path.resolve(confDir, '.flags'));
-
-		return fs
+		const flagsFile = fs
 			.readFileSync(path.resolve(confDir, '.flags'))
-			.toString()
-			.includes('--' + flag);
+			.toString();
+
+		const s = flagsFile.split('\n');
+
+		for (const k in s) {
+			if (Object.hasOwnProperty.call(s, k)) {
+				const e = s[k].split(' ');
+
+				if (e.shift() == '--' + flag) {
+					return e.join(' ');
+				}
+			}
+		}
+	};
+
+	// console.log(getFlagValue('a'));
+
+	// if has value, this will return false
+	const isFlag = (...flags) => {
+		fs.ensureFileSync(path.resolve(confDir, '.flags'));
+		const flagsFile = fs
+			.readFileSync(path.resolve(confDir, '.flags'))
+			.toString();
+
+		const checkFlag = f => flagsFile.split('\n').includes('--' + f);
+
+		for (let index = 0; index < flags.length; index++) {
+			const e = flags[index];
+			if (checkFlag(e)) return true;
+		}
+		return false;
 	};
 
 	const dump = (file, data) => {
+		if (isFlag('noDump')) return dump;
 		if (typeof data == typeof {}) {
-			data = JSON.stringify(data);
+			data = JSON.stringify(data, ' ', 2);
 		} else {
 			data = data.toString();
 		}
 		const dumpdir = path.resolve(confDir, 'Dump');
+		const dumpPath = path.resolve(dumpdir, file);
 		fs.ensureDirSync(dumpdir);
-		fs.writeFileSync(path.resolve(dumpdir, file), data);
+		fs.writeFileSync(dumpPath, data);
+		// console.log(`Dumped data to ${dumpPath}`);
+		if (!fs.existsSync(path.resolve(dumpdir, 'README.md'))) {
+			fs.writeFileSync(
+				path.resolve(dumpdir, 'README.md'),
+				'# Dump Data\nThis folder contains dump data, created for debugging purposes.\nDeleting files here does not' +
+					' change program functionality in any way. <br/>\n' +
+					'Editing files here also does nothing in terms of functionality, but edits will be replaced automatically when new content gets "dumped".'
+			);
+		}
+		return dump;
 	};
+
+	if (isFlag('noDump'))
+		console.warn('All dumps are disabled. This is strongly discouraged!');
 
 	const checkIfProcessIsRunning = name => {
 		return new Promise(res => {
@@ -136,6 +179,20 @@
 		currentGame = game.DisplayName || 'Unknown';
 		currentGamePrefix = game.Prefix || 'Playing';
 		smallText = `${currentGame || 'Unknown'} (Priority: ${game.Priority || 0})`;
+
+		if (isFlag('debugDump', 'varDump', 'allDebug'))
+			dump('vars.json', {
+				exposedVars: {
+					currentGameIcon,
+					currentGame,
+					currentGamePrefix,
+					smallText,
+					quote,
+				},
+				generatedFrom: {
+					game,
+				},
+			});
 	};
 
 	const { app, BrowserWindow } = require('electron');
@@ -243,9 +300,8 @@
 			.split('\\')
 			.join('\\\\\\\\')}\\"',()=>{})"`);
 
-		if (isFlag('debugDump')) {
+		if (isFlag('debugDump', 'activityDump', 'allDebug'))
 			dump('activity.json', act);
-		}
 	}
 
 	rpc.on('ready', () => {
