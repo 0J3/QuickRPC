@@ -19,6 +19,17 @@
 			.includes('--' + flag);
 	};
 
+	const dump = (file, data) => {
+		if (typeof data == typeof {}) {
+			data = JSON.stringify(data);
+		} else {
+			data = data.toString();
+		}
+		const dumpdir = path.resolve(confDir, 'Dump');
+		fs.ensureDirSync(dumpdir);
+		fs.writeFileSync(path.resolve(dumpdir, file), data);
+	};
+
 	const checkIfProcessIsRunning = name => {
 		return new Promise(res => {
 			getpid(name, (err, pid) => {
@@ -231,6 +242,10 @@
 		document.getElementById('openConf').href="JavaScript:require('child_process').exec('explorer \\"${confDir
 			.split('\\')
 			.join('\\\\\\\\')}\\"',()=>{})"`);
+
+		if (isFlag('debugDump')) {
+			dump('activity.json', act);
+		}
 	}
 
 	rpc.on('ready', () => {
