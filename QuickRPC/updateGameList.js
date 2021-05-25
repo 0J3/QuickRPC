@@ -1,6 +1,7 @@
 module.exports = async () => {
 	const path = require('path');
 	const fs = require('fs');
+	const axios = require('axios');
 
 	async function downloadFile(url, file) {
 		const writer = fs.createWriteStream(path.resolve(file));
@@ -21,15 +22,11 @@ module.exports = async () => {
 	}
 
 	axios({
-		url: 'https://0j3.github.io/QuickRPC/Config/Games/_index.json', //your url
+		url: 'https://0j3.github.io/QuickRPC/Config/gameList.json',
 		method: 'GET',
-		responseType: 'blob', // important
+		responseType: 'json',
 	}).then(response => {
-		const url = window.URL.createObjectURL(new Blob([response.data]));
-		const link = document.createElement('a');
-		link.href = url;
-		link.setAttribute('download', 'file.pdf'); //or any other extension
-		document.body.appendChild(link);
-		link.click();
+		console.log(response.body);
 	});
 };
+module.exports();
