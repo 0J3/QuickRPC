@@ -16,6 +16,8 @@ const init = async () => {
 			`-- App Start @ ${new Date()}\n`
 		);
 
+	// if (!fs.existsSync(path.resolve(dumpdir, 'README.md')))
+
 	const ensureFlagFile = () => {
 		if (!fs.existsSync(path.resolve(confDir, '.flags'))) {
 			fs.ensureFileSync(path.resolve(confDir, '.flags'));
@@ -77,6 +79,12 @@ const init = async () => {
 
 	const dump = (file, data, extendFile) => {
 		if (isFlag('noDump')) return dump;
+		if (
+			file != 'README.md' &&
+			!file.endsWith('.json') &&
+			isFlag('onlyDumpJson')
+		) {
+		}
 		if (file.endsWith('.log')) {
 			extendFile = true;
 			if (!(isFlag('noDumpToCentralLog') || file == 'app.log'))
@@ -96,16 +104,23 @@ const init = async () => {
 		if (!extendFile) fs.writeFileSync(dumpPath, data);
 		else fs.appendFileSync(dumpPath, data + '\n');
 		// console.log(`Dumped data to ${dumpPath}`);
-		if (!fs.existsSync(path.resolve(dumpdir, 'README.md'))) {
-			fs.writeFileSync(
-				path.resolve(dumpdir, 'README.md'),
-				'# Dump Data\nThis folder contains dump data, created for debugging purposes.\nDeleting files here does not' +
-					' change program functionality in any way. <br/>\n' +
-					'Editing files here also does nothing in terms of functionality, but edits will be replaced automatically when new content gets "dumped".'
-			);
-		}
 		return dump;
 	};
+
+	console.log('a');
+	dump(
+		'README.md',
+		'# Dump Data\n' +
+			'This folder contains dump data, created for debugging purposes. <br/>\n' +
+			'Deleting files here does not change program functionality in any way. <br/>\n' +
+			'Editing files here also does nothing in terms of functionality, but edits will be replaced automatically when new content gets "dumped". <br/>\n' +
+			'If you want all debug data, add `--allDump` on its own line in `.flags` <br/>\nHere are a few more flags for you to experiment with (remember to prefix these with `--`): <br/>\n' +
+			'- `allDebug` (not only for dumping)\n' +
+			'- `activityDump`\n' +
+			'- `varDump`\n' +
+			'- `gameDump`\n' +
+			'- `onlyDumpJson` (removes all non-json logs)\n'
+	);
 
 	const downloadFile = async (url, file) => {
 		const writer = fs.createWriteStream(path.resolve(file));
@@ -143,7 +158,7 @@ module.exports = async () => {
 	if (!util) {
 		const util = await init();
 
-		if (util.isFlag('logUtilInit', 'logUtil')) {
+		if (util.isFlag('logUtilInit', 'logUtil', 'allDump')) {
 			util.dump(
 				'utilLog.log',
 				'Util not already initialized, initializing and caching'
@@ -152,7 +167,7 @@ module.exports = async () => {
 
 		return util;
 	} else {
-		if (util.isFlag('logUtilInit', 'logUtil')) {
+		if (util.isFlag('logUtilInit', 'logUtil', 'allDump')) {
 			util.dump(
 				'utilLog.log',
 				'Util already initialized, returning cached version'

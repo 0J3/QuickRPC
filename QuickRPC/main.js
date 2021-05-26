@@ -73,8 +73,7 @@
 			});
 		});
 
-		if (isFlag('debugDump', 'allDump', 'gameDump', 'allDebug'))
-			dump('games.json', games);
+		if (isFlag('allDump', 'gameDump', 'allDebug')) dump('games.json', games);
 
 		return games;
 	};
@@ -131,7 +130,7 @@
 		currentGamePrefix = game.Prefix || 'Playing';
 		smallText = `${currentGame || 'Unknown'} (Priority: ${game.Priority || 0})`;
 
-		if (isFlag('debugDump', 'allDump', 'varDump', 'allDebug'))
+		if (isFlag('allDump', 'varDump', 'allDebug'))
 			dump('vars.json', {
 				exposedVars: {
 					currentGameIcon,
@@ -209,7 +208,7 @@
 	const rpc = new DiscordRPC.Client({ transport: 'ipc' });
 	const startTimestamp = new Date();
 
-	async function setActivity() {
+	const setActivity = async () => {
 		if (!rpc || !mainWindow) {
 			return;
 		}
@@ -251,9 +250,9 @@
 			.split('\\')
 			.join('\\\\\\\\')}\\"',()=>{})"`);
 
-		if (isFlag('debugDump', 'allDump', 'activityDump', 'allDebug'))
+		if (isFlag('allDump', 'activityDump', 'allDebug'))
 			dump('activity.json', act);
-	}
+	};
 
 	rpc.on('ready', () => {
 		setActivity();
