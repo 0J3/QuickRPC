@@ -1,4 +1,4 @@
-module.exports = async gamesDir => {
+module.exports = async (gamesDir, overwriteGameJsonStrings) => {
 	const path = require('path');
 	const fs = require('fs');
 	const axios = require('axios');
@@ -28,6 +28,18 @@ module.exports = async gamesDir => {
 	});
 	const { list } = data;
 	list.forEach(item => {
-		downloadFile(data.root + item, path.resolve(gamesDir, item));
+		const file = path.resolve(gamesDir, item);
+		if (fs.existsSync(file)) {
+			if (overwriteGameJsonStrings == 'false' || !overwriteGameJsonStrings) {
+				console.log(
+					'Not overwriting',
+					file,
+					' '.repeat(Math.max(25 - item.length, 1)),
+					'Reason: Flag overwriteGameJsonStrings is false or has no value'
+				);
+				return;
+			}
+		}
+		downloadFile(data.root + item, file);
 	});
 };

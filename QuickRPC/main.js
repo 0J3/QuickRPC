@@ -2,6 +2,8 @@
 
 /* eslint-disable no-console */
 
+const defaultFlags = ['overwriteGameJsonStrings true'];
+
 (async () => {
 	console.log('app start');
 	const { confjson, gamesFolder, quotesFile, confDir } =
@@ -10,8 +12,21 @@
 		fs = require('fs-extra'),
 		getpid = require('getpid');
 
+	const ensureFlagFile = () => {
+		if (!fs.existsSync(path.resolve(confDir, '.flags'))) {
+			fs.ensureFileSync(path.resolve(confDir, '.flags'));
+			fs.writeFileSync(
+				path.resolve(confDir, '.flags'),
+				'--' + defaultFlags.join('\n--')
+			);
+			return false;
+		}
+		fs.ensureFileSync(path.resolve(confDir, '.flags')); // ensure anyway just incase
+		return true;
+	};
+
 	const getFlagValue = flag => {
-		fs.ensureFileSync(path.resolve(confDir, '.flags'));
+		ensureFlagFile();
 		const flagsFile = fs
 			.readFileSync(path.resolve(confDir, '.flags'))
 			.toString();
@@ -33,7 +48,7 @@
 
 	// if has value, this will return false
 	const isFlag = (...flags) => {
-		fs.ensureFileSync(path.resolve(confDir, '.flags'));
+		ensureFlagFile();
 		const flagsFile = fs
 			.readFileSync(path.resolve(confDir, '.flags'))
 			.toString();
@@ -46,6 +61,17 @@
 		}
 		return false;
 	};
+
+	const ensureFlagExists = (flag, defaultValue) => {
+		if (!(isFlag(flag) || getFlagValue(flag))) {
+			fs.appendFileSync(
+				path.resolve(confDir, '.flags'),
+				'\n--' + flag + ' ' + defaultValue
+			);
+		}
+	};
+
+	ensureFlagExists('overwriteGameJsonStrings', 'true');
 
 	const dump = (file, data) => {
 		if (isFlag('noDump')) return dump;
@@ -312,7 +338,10 @@
 		}, 15e3);
 
 		if (!isFlag('noUpdateGameList'))
-			require('./updateGameList')(gamesFolder).then(() => {
+			require('./updateGameList')(
+				gamesFolder,
+				getFlagValue('overwriteGameJsonStrings').toString()
+			).then(() => {
 				console.log('Updated Game List!');
 			});
 	});
