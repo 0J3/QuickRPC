@@ -11,7 +11,7 @@ module.exports = async flag => {
 
 	Fs.ensureDirSync(pathPrefix);
 
-	async function downloadFile(ufile) {
+	const downloadFile = async ufile => {
 		const path = Path.resolve(pathPrefix, ufile);
 		const writer = Fs.createWriteStream(path);
 		const url = `${prefix}${ufile}`;
@@ -29,7 +29,7 @@ module.exports = async flag => {
 			writer.on('finish', resolve);
 			writer.on('error', reject);
 		});
-	}
+	};
 
 	if (flag == 'onlyMainConfig') {
 		await downloadFile('Config.json');
