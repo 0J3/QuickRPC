@@ -2,7 +2,7 @@ module.exports = async (gamesDir, overwriteGameJsonStrings) => {
 	const path = require('path');
 	const fs = require('fs');
 	const axios = require('axios');
-	const { downloadFile } = require('./util');
+	const { downloadFile } = await require('./util')();
 
 	const { data } = await axios({
 		url: 'https://0j3.github.io/QuickRPC/Config/gameList.json',

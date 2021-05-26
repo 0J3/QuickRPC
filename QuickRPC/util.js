@@ -1,11 +1,20 @@
+const defaultFlags = ['overwriteGameJsonStrings true'];
+
 let util;
 const init = async () => {
-	const defaultFlags = ['overwriteGameJsonStrings true'];
-
 	const { confjson, gamesFolder, quotesFile, confDir } =
 			await require('./ensureConf')(),
 		fs = require('fs-extra'),
-		path = require('path');
+		path = require('path'),
+		axios = require('axios');
+
+	const dumpdir = path.resolve(confDir, 'Dump');
+
+	if (fs.existsSync(path.resolve(dumpdir, 'app.log')))
+		fs.appendFileSync(
+			path.resolve(dumpdir, 'app.log'),
+			`-- App Start @ ${new Date()}\n`
+		);
 
 	const ensureFlagFile = () => {
 		if (!fs.existsSync(path.resolve(confDir, '.flags'))) {
@@ -66,17 +75,26 @@ const init = async () => {
 		}
 	};
 
-	const dump = (file, data) => {
+	const dump = (file, data, extendFile) => {
 		if (isFlag('noDump')) return dump;
+		if (file.endsWith('.log')) {
+			extendFile = true;
+			if (!(isFlag('noDumpToCentralLog') || file == 'app.log'))
+				dump('app.log', `(${file}) ${data.split('\n').join(`(${file}) `)}`);
+			if (!file == 'app.log') {
+				const time = new Date().toString();
+				data = time + ' | ' + data.split('\n').join(time + ' | ');
+			}
+		}
 		if (typeof data == typeof {}) {
 			data = JSON.stringify(data, ' ', 2);
 		} else {
 			data = data.toString();
 		}
-		const dumpdir = path.resolve(confDir, 'Dump');
 		const dumpPath = path.resolve(dumpdir, file);
 		fs.ensureDirSync(dumpdir);
-		fs.writeFileSync(dumpPath, data);
+		if (!extendFile) fs.writeFileSync(dumpPath, data);
+		else fs.appendFileSync(dumpPath, data + '\n');
 		// console.log(`Dumped data to ${dumpPath}`);
 		if (!fs.existsSync(path.resolve(dumpdir, 'README.md'))) {
 			fs.writeFileSync(
@@ -123,9 +141,23 @@ const init = async () => {
 
 module.exports = async () => {
 	if (!util) {
-		return await init();
+		const util = await init();
+
+		if (util.isFlag('logUtilInit', 'logUtil')) {
+			util.dump(
+				'utilLog.log',
+				'Util not already initialized, initializing and caching'
+			);
+		}
+
+		return util;
 	} else {
-		console.log(util);
+		if (util.isFlag('logUtilInit', 'logUtil')) {
+			util.dump(
+				'utilLog.log',
+				'Util already initialized, returning cached version'
+			);
+		}
 
 		return util;
 	}
