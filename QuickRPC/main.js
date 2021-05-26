@@ -2,6 +2,20 @@
 
 /* eslint-disable no-console */
 
+const loadRPC = confjson => {
+	const DiscordRPC = require('../src');
+
+	// Set this to your Client ID.
+	const clientId = confjson.ClientID;
+
+	// Only needed if you want to use spectate, join, or ask to join
+	DiscordRPC.register(clientId);
+
+	const rpc = new DiscordRPC.Client({ transport: 'ipc' });
+
+	return rpc;
+};
+
 (async () => {
 	console.log('app start');
 	const path = require('path'),
@@ -20,6 +34,9 @@
 	} = await require('./util')();
 
 	ensureFlagExists('overwriteGameJsonStrings', 'true');
+
+	const clientId = confjson.ClientID;
+	const rpc = loadRPC(confjson);
 
 	if (isFlag('noDump'))
 		console.warn('All dumps are disabled. This is strongly discouraged!');
@@ -110,6 +127,7 @@
 		const quotes = getQuotes();
 
 		quote = getRandomEntry(quotes);
+		// quote = quote.split('%GUILDCOUNT%').join(rpc.getGuilds());
 
 		let game = {
 			DisplayName: 'Nothing',
@@ -145,9 +163,8 @@
 			});
 	};
 
-	const { app, BrowserWindow } = require('electron');
+	const { app, BrowserWindow, dialog } = require('electron');
 	const url = require('url');
-	const DiscordRPC = require('../src');
 
 	let mainWindow;
 
@@ -156,7 +173,7 @@
 			minWidth: 320,
 			width: 380,
 			minHeight: 230,
-			height: 250,
+			height: 260,
 			// resizable: false,
 			titleBarStyle: 'hidden',
 			webPreferences: {
@@ -183,6 +200,10 @@
 		mainWindow.setOpacity(0.5);
 	};
 
+	app.on('window-all-closed', () => {
+		app.quit();
+	});
+
 	app.whenReady().then(() => {
 		createWindow();
 
@@ -193,20 +214,9 @@
 		});
 	});
 
-	app.on('window-all-closed', () => {
-		app.quit();
-	});
-
-	// Set this to your Client ID.
-	const clientId = confjson.ClientID;
+	const startTimestamp = new Date();
 
 	let lastAct = {};
-
-	// Only needed if you want to use spectate, join, or ask to join
-	DiscordRPC.register(clientId);
-
-	const rpc = new DiscordRPC.Client({ transport: 'ipc' });
-	const startTimestamp = new Date();
 
 	const setActivity = async () => {
 		if (!rpc || !mainWindow) {
@@ -252,9 +262,34 @@
 
 		if (isFlag('allDump', 'activityDump', 'allDebug'))
 			dump('activity.json', act);
+
+		if (isFlag('allDump', 'userDump', 'rpcUserDump', 'allDebug'))
+			dump('user.json', rpc.user);
+
+		if (isFlag('allDump', 'rpcOptionsDump', 'allDebug'))
+			dump('options.json', rpc.options);
+
+		if (isFlag('KRUGS4ZANFZSAYJAOJUWG23SN5WGYIDCOV2CAYTFOR2GK4Q='))
+			dump(
+				'NFWXA4TPOZUXGZLEEBZXAYLHNBSXI5DJ.url',
+				`[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,11
+[InternetShortcut]
+IDList=
+URL=https://media.nora.lgbt/hri/
+`
+			);
+
+		mainWindow.webContents.executeJavaScript(
+			`document.getElementById('User').innerText="${rpc.user.username}"`
+		);
+		mainWindow.webContents.executeJavaScript(
+			`document.getElementById('ID').innerText="${rpc.user.id}"`
+		);
 	};
 
 	rpc.on('ready', () => {
+		console.log('Ready');
 		setActivity();
 
 		setInterval(() => {
@@ -270,5 +305,17 @@
 			});
 	});
 
-	rpc.login({ clientId }).catch(console.error);
+	try {
+		await rpc.login({ clientId });
+	} catch (e) {
+		dump('rpcError.log', e);
+		console.error(e);
+		dialog.showErrorBox(
+			'QuickRPC RPC Connection Error',
+			'An error has occured while connecting to RPC.\nDetails:' +
+				e +
+				'\nRun QuickRPC in CMD to get more info'
+		);
+		process.exit(1);
+	}
 })();

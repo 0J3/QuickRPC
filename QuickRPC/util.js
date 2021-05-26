@@ -79,11 +79,10 @@ const init = async () => {
 
 	const dump = (file, data, extendFile) => {
 		if (isFlag('noDump')) return dump;
-		if (
-			file != 'README.md' &&
-			!file.endsWith('.json') &&
-			isFlag('onlyDumpJson')
-		) {
+		if (typeof data == typeof {}) {
+			data = JSON.stringify(data, ' ', 2);
+		} else {
+			data = data.toString();
 		}
 		if (file.endsWith('.log')) {
 			extendFile = true;
@@ -94,11 +93,6 @@ const init = async () => {
 				data = time + ' | ' + data.split('\n').join(time + ' | ');
 			}
 		}
-		if (typeof data == typeof {}) {
-			data = JSON.stringify(data, ' ', 2);
-		} else {
-			data = data.toString();
-		}
 		const dumpPath = path.resolve(dumpdir, file);
 		fs.ensureDirSync(dumpdir);
 		if (!extendFile) fs.writeFileSync(dumpPath, data);
@@ -107,7 +101,6 @@ const init = async () => {
 		return dump;
 	};
 
-	console.log('a');
 	dump(
 		'README.md',
 		'# Dump Data\n' +
