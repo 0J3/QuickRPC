@@ -1,6 +1,6 @@
 {
   "name": "quickrpc",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Discord RPC Client",
   "keywords": [
     "discord",
@@ -38,8 +38,7 @@
   "optionalDependencies": {
     "register-scheme": "github:devsnek/node-register-scheme"
   },
-  "devDependencies": {
-    "@types/node": "^15.6.0",
+  "devDependencies": {Entries m
     "babel-eslint": "^10.0.3",
     "discord.js-docgen": "github:discordjs/docgen",
     "electron": "^12.0.9",
