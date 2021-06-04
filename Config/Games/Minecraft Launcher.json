@@ -1,5 +1,5 @@
 {
-	"Exe": "MinecraftLauncher.exe",
+	"Exe": ["MinecraftLauncher.exe","MinecraftLauncher","minecraft-launcher"],
 	"Prefix": "Playing",
 	"DisplayName": "Minecraft Launcher",
 	"Enabled": true,

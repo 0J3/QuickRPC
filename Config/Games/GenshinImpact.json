@@ -1,5 +1,5 @@
 {
-	"Exe": "GenshinImpact.exe",
+	"Exe": ["GenshinImpact.exe","GenshinImpact"],
 	"Prefix": "Playing",
 	"DisplayName": "Genshin Impact",
 	"Enabled": true,

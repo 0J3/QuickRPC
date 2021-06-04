@@ -1,5 +1,5 @@
 {
-	"Exe": "obs.exe",
+	"Exe": ["obs.exe","obs"],
 	"Prefix": "Running",
 	"DisplayName": "OBS",
 	"Enabled": true,

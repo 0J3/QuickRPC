@@ -1,5 +1,5 @@
 {
-	"Exe": "Streamlabs OBS.exe",
+	"Exe": ["Streamlabs OBS.exe","Streamlabs OBS","slobs"],
 	"Prefix": "Running",
 	"DisplayName": "Streamlabs OBS",
 	"Enabled": true,

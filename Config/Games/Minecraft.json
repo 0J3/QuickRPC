@@ -1,5 +1,5 @@
 {
-	"Exe": "javaw.exe",
+	"Exe": ["javaw.exe"],
 	"Prefix": "Playing",
 	"DisplayName": "Minecraft",
 	"Enabled": true,

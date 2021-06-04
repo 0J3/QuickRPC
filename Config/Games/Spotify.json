@@ -1,5 +1,5 @@
 {
-	"Exe": "Spotify.exe",
+	"Exe": ["Spotify.exe","Spotify"],
 	"Prefix": "Listening to ",
 	"DisplayName": "Music",
 	"Enabled": true,

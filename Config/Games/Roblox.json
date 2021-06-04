@@ -1,5 +1,5 @@
 {
-	"Exe": "RobloxPlayerBeta.exe",
+	"Exe": ["RobloxPlayerBeta.exe"],
 	"Prefix": "Playing",
 	"DisplayName": "Roblox",
 	"Enabled": true,

@@ -1,5 +1,5 @@
 {
-	"Exe": "Among Us.exe",
+	"Exe": ["Among Us.exe","Among Us"],
 	"Prefix": "Playing",
 	"DisplayName": "Among Us",
 	"Enabled": true,
