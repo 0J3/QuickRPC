@@ -172,7 +172,8 @@ const loadRPC = confjson => {
 
     currentGameIcon = game.Icon || 'Default_Small';
     currentGame = game.DisplayName || 'Unknown';
-    currentGamePrefix = game.Prefix || 'Playing';
+    currentGamePrefix =
+      typeof game.Prefix == typeof null ? 'Playing' : game.Prefix;
     smallText = `${currentGame || 'Unknown'} (Priority: ${game.Priority || 0})`;
 
     if (isFlag('allDump', 'varDump', 'allDebug'))
