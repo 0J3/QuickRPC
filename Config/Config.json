@@ -2,6 +2,9 @@
 	"ClientID": "846429751803641887",
 	"GamesFolder": "Games",
 	"QuotesFile": "Quotes.txt",
-	"Button1": { "label": "Pgoger Vidoe", "url": "https://media.nora.lgbt/hri/" },
-	"Button2": { "label": "About me", "url": "https://nora.lgbt/bio/" }
+	"Button1": { "label": "Some Video", "url": "https://media.nora.lgbt/hri/" },
+	"Button2": {
+		"label": "QuickRPC",
+		"url": "https://github.com/0J3/QuickRPC/releases/latest"
+	}
 }
