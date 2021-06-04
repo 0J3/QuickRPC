@@ -53,6 +53,10 @@ Open a Terminal, `cd` into the directory (usually `cd ~/Downloads`), and run `su
 
 `yarn dist`
 
+---
+
+Now that you've installed it (regardless how), you can move on to [Configuration](#configuration)
+
 ## Using A Flag
 
 Flags are seperated into 2 categories, `value` and `valueless`
@@ -112,3 +116,7 @@ If none are found, the program might break idk
    > 3. noUpdateCheck will entirely disable update checking, not just disable enforcing usage of the latest version.
 3. If you are getting an error every aproximately 15 seconds, try [this](#disabling-game-detection-altogether-021-or-above)
 4. If you don't want preset games to be replaced on each program restart (new ones are still added on restart), use [this](#disabling-overwriting-games-012-or-above)
+
+## Issues
+
+If you have an issue, whether you need support, or there's a bug, just file an [Issue](https://github.com/0J3/QuickRPC/issues/new). Detail in the original post is optional, but would be good if provided.
