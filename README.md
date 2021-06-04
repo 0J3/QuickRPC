@@ -60,7 +60,7 @@ Flags are seperated into 2 categories, `value` and `valueless`
 `valueless`-flags are structured like this: `--flagName`<br/>
 `value`-flags are structured like this: `--flagName value (can include spaces)`
 
-Regardless of which structure is used, each flag is on a seperate line in the `.flags` file (`.flags` file is found in your config directory, usually in `%APPDATA%\QuickRPC\Config` on windows, and `~/.config/quickrpc/Config` on linux - you can access the config by clicking `Open Config Folder`)
+Regardless of which structure is used, each flag is on a seperate line in the `.flags` file (`.flags` file is found in your config directory, which is usually `%APPDATA%\QuickRPC\Config` on windows, and `~/.config/quickrpc/Config` on linux - you can access the config directory by clicking `Open Config Folder`)
 
 To add one, add it to a new line in the `.flags` file, using the structures above
 
@@ -72,7 +72,7 @@ Settings for buttons found in `Open Config Folder>Config.json` under keys `Butto
 
 ### Games (1st Status Line, Small Icon)
 
-To add a game, first, make a new file (which names ends with .json - you might need to [enable show hidden file extensions](https://fileinfo.com/help/windows_10_show_file_extensions) in windows 10) in the `Config/Games` folder, and put this preset JSON in:
+To add a game, first, make a new file (which's name ends with .json - you might need to [enable show hidden file extensions](https://fileinfo.com/help/windows_10_show_file_extensions) in windows 10) in the `Config/Games` folder, and put this preset JSON in:
 
 ```json
 {
