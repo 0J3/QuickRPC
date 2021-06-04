@@ -37,6 +37,7 @@ const loadRPC = confjson => {
     } = await require('./util')();
 
   ensureFlagExists('overwriteGameJsonStrings', 'true');
+  ensureFlagExists('gameLineOverwrite', 'none');
 
   const clientId = confjson.ClientID;
   const rpc = loadRPC(confjson);
@@ -45,6 +46,7 @@ const loadRPC = confjson => {
     console.warn('All dumps are disabled. This is strongly discouraged!');
 
   const checkIfProcessIsRunning = name => {
+    if (getFlagValue('gameLineOverwrite') == 'none') return;
     if (typeof name == typeof []) {
       return new Promise(async res => {
         let v = false;
@@ -76,6 +78,8 @@ const loadRPC = confjson => {
   };
 
   const getGames = () => {
+    if (getFlagValue('gameLineOverwrite') == 'none') return [];
+
     const gamesJSONList = fs.readdirSync(gamesFolder);
 
     const gamesUnsorted = [];
@@ -146,15 +150,25 @@ const loadRPC = confjson => {
       DisplayName: 'Nothing',
     };
 
-    for (let index = 0; index < games.length; index++) {
-      const g = games[index];
+    if (getFlagValue('gameLineOverwrite') == 'none')
+      for (let index = 0; index < games.length; index++) {
+        const g = games[index];
 
-      const v = await checkIfProcessIsRunning(g.Exe);
-      if (v) {
-        game = g;
-        break;
+        const v = await checkIfProcessIsRunning(g.Exe);
+        if (v) {
+          game = g;
+          break;
+        }
       }
-    }
+    else
+      game = {
+        Exe: ['OVERWRITE'],
+        Prefix: '',
+        DisplayName: getFlagValue('gameLineOverwrite'),
+        Enabled: true,
+        Icon: 'overwrite',
+        Priority: 1,
+      };
 
     currentGameIcon = game.Icon || 'Default_Small';
     currentGame = game.DisplayName || 'Unknown';
