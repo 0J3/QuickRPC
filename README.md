@@ -99,7 +99,7 @@ Replace the flag `--overwriteGameJsonStrings true` with `--overwriteGameJsonStri
 
 Quotes can be found in the `quotes.txt` file, and every 15 seconds (every RPC update), a random line is selected from that file, to be put on the 2nd line of your status.
 
-Lines must be at maximum `99-(Game Prefix Length)` characters long (longer will be ignored - sorry for those 101 character quotes), and mustn't start with `//` or be empty, otherwise they will be ignored
+Lines must be at maximum `99-(Game Prefix Length)` characters long (longer will be ignored - sorry for those 100 character quotes), and mustn't start with `//` or be empty, otherwise they will be ignored
 
 If none are found, the program might break idk
 
