@@ -1,7 +1,7 @@
 {
   "name": "quickrpc",
   "version": "0.1.3",
-  "description": "Fork of Discord.JS/RPC designed for having a better status or smthn",
+  "description": "Discord RPC Client",
   "keywords": [
     "discord",
     "rpc",
@@ -67,5 +67,23 @@
   },
   "win": {
     "publisherName": "0J3"
+  },
+  "linux": {
+    "synopsis": "A Discord RPC Client",
+    "description": "A Discord Rich Presence Client",
+    "executableName": "QuickRPC",
+    "category": "Network"
+  },
+  "deb": {
+    "depends": [
+      "gconf2",
+      "gconf-service",
+      "libnotify4",
+      "libappindicator1",
+      "libxtst6",
+      "libnss3",
+      "discord"
+    ],
+    "priority": "standard"
   }
 }
