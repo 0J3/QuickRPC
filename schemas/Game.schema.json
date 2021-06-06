@@ -6,7 +6,10 @@
       "type": "array",
       "items": [
         {
-          "type": "string"
+          "type": "string",
+          "not": {
+            "pattern": ".*\\.exe"
+          }
         }
       ]
     },
