@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/0J3/QuickRPC/main/schemas/Game.schema.json",
   "Exe": ["MinecraftLauncher\\.exe", "MinecraftLauncher", "minecraft-launcher"],
   "Prefix": "Playing",
   "DisplayName": "Minecraft Launcher",
