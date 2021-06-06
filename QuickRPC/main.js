@@ -65,6 +65,14 @@ const loadRPC = confjson => {
     } else
       return new Promise(res => {
         name = name.toLowerCase();
+        if (name.includes('.exe') && !name.includes('\\.exe')) {
+          console.warn(
+            '.exe (instead of \\.exe) might break regex! Be warned!'
+          );
+          console.info(
+            "If there's no arguments specified in the exe value, there's no point in specifying .exe! We automatically check for both with .exe and without!"
+          );
+        }
         const reg = new RegExp(name);
         processes.forEach(element => {
           const cmd = element.command.toLowerCase();
@@ -77,8 +85,8 @@ const loadRPC = confjson => {
           const matches = cmd => {
             return (
               check(cmd, name) ||
-              check(cmd + '.exe', name) ||
-              check(cmd, name + '.exe')
+              check(cmd + '\\.exe', name) ||
+              check(cmd, name + '\\.exe')
             );
           };
 

@@ -1,8 +1,8 @@
 {
-	"Exe": ["Among Us.exe","Among Us"],
-	"Prefix": "Playing",
-	"DisplayName": "Among Us",
-	"Enabled": true,
-	"Icon": "amongus",
-	"Priority": 3
+  "Exe": ["Among Us\\.exe", "Among Us"],
+  "Prefix": "Playing",
+  "DisplayName": "Among Us",
+  "Enabled": true,
+  "Icon": "amongus",
+  "Priority": 3
 }

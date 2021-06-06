@@ -2,6 +2,9 @@
   "Exe": [
     "Lunar Client \\((\\d\\.\\d?\\d\\.\\d?\\d)\\.\\.[0-z][0-z][0-z][0-z][0-z][0-z][0-z]\\)",
     "java .*\\.lunarclient.*",
+    "javaw .*\\.lunarclient.*",
+    "java\\.exe .*\\.lunarclient.*",
+    "javaw\\.exe .*\\.lunarclient.*",
     "Lunar Client"
   ],
   "Prefix": "Playing",

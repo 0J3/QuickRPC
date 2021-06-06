@@ -1,8 +1,8 @@
 {
-	"Exe": ["Streamlabs OBS.exe","Streamlabs OBS","slobs"],
-	"Prefix": "Running",
-	"DisplayName": "Streamlabs OBS",
-	"Enabled": true,
-	"Icon": "streamlabs",
-	"Priority": 1
+  "Exe": ["Streamlabs OBS\\.exe", "Streamlabs OBS", "slobs"],
+  "Prefix": "Running",
+  "DisplayName": "Streamlabs OBS",
+  "Enabled": true,
+  "Icon": "streamlabs",
+  "Priority": 1
 }

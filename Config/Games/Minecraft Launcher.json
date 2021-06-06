@@ -1,8 +1,8 @@
 {
-	"Exe": ["MinecraftLauncher.exe","MinecraftLauncher","minecraft-launcher"],
-	"Prefix": "Playing",
-	"DisplayName": "Minecraft Launcher",
-	"Enabled": true,
-	"Icon": "minecraft",
-	"Priority": 4
+  "Exe": ["MinecraftLauncher\\.exe", "MinecraftLauncher", "minecraft-launcher"],
+  "Prefix": "Playing",
+  "DisplayName": "Minecraft Launcher",
+  "Enabled": true,
+  "Icon": "minecraft",
+  "Priority": 4
 }

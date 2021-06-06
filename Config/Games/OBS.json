@@ -1,8 +1,8 @@
 {
-	"Exe": ["obs.exe","obs"],
-	"Prefix": "Running",
-	"DisplayName": "OBS",
-	"Enabled": true,
-	"Icon": "obs",
-	"Priority": 0
+  "Exe": ["obs\\.exe", "obs"],
+  "Prefix": "Running",
+  "DisplayName": "OBS",
+  "Enabled": true,
+  "Icon": "obs",
+  "Priority": 0
 }

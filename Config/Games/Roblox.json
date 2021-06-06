@@ -1,8 +1,8 @@
 {
-	"Exe": ["RobloxPlayerBeta.exe"],
-	"Prefix": "Playing",
-	"DisplayName": "Roblox",
-	"Enabled": true,
-	"Icon": "Rbx",
-	"Priority": 4
+  "Exe": ["RobloxPlayerBeta\\.exe"],
+  "Prefix": "Playing",
+  "DisplayName": "Roblox",
+  "Enabled": true,
+  "Icon": "Rbx",
+  "Priority": 4
 }

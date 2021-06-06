@@ -1,8 +1,8 @@
 {
-	"Exe": ["javaw.exe"],
-	"Prefix": "Playing",
-	"DisplayName": "Minecraft",
-	"Enabled": true,
-	"Icon": "minecraft",
-	"Priority": 4
+  "Exe": ["javaw\\.exe .*minecraft.*", "javaw .*minecraft.*"],
+  "Prefix": "Playing",
+  "DisplayName": "Minecraft",
+  "Enabled": true,
+  "Icon": "minecraft",
+  "Priority": 4
 }

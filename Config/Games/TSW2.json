@@ -1,8 +1,8 @@
 {
-	"Exe": ["TS2Prototype.exe"],
-	"Prefix": "Playing",
-	"DisplayName": "Train Simulator World 2",
-	"Enabled": true,
-	"Icon": "tsw",
-	"Priority": 3
+  "Exe": ["TS2Prototype\\.exe"],
+  "Prefix": "Playing",
+  "DisplayName": "Train Simulator World 2",
+  "Enabled": true,
+  "Icon": "tsw",
+  "Priority": 3
 }

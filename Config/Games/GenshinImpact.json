@@ -1,8 +1,8 @@
 {
-	"Exe": ["GenshinImpact.exe","GenshinImpact"],
-	"Prefix": "Playing",
-	"DisplayName": "Genshin Impact",
-	"Enabled": true,
-	"Icon": "genshin",
-	"Priority": 5
+  "Exe": ["GenshinImpact\\.exe", "GenshinImpact"],
+  "Prefix": "Playing",
+  "DisplayName": "Genshin Impact",
+  "Enabled": true,
+  "Icon": "genshin",
+  "Priority": 5
 }
