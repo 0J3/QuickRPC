@@ -1,16 +1,18 @@
 {
-	"root": "https://0j3.github.io/QuickRPC/Config/Games/",
-	"list": [
-		"Among Us.json",
-		"Asphalt9.json",
-		"GenshinImpact.json",
-		"Lunar.json",
-		"Minecraft Launcher.json",
-		"Minecraft.json",
-		"OBS.json",
-		"Roblox.json",
-		"Spotify.json",
-		"Streamlabs.json",
-		"TSW2.json"
-	]
+  "root": "https://0j3.github.io/QuickRPC/Config/Games/",
+  "list": [
+    "Among Us.json",
+    "Asphalt9.json",
+    "GenshinImpact.json",
+    "LeagueOfLegends.json",
+    "Lunar.json",
+    "Minecraft Launcher.json",
+    "Minecraft.json",
+    "OBS.json",
+    "Roblox.json",
+    "RocketLeague.json",
+    "Spotify.json",
+    "Streamlabs.json",
+    "TSW2.json"
+  ]
 }
