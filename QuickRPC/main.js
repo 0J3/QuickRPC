@@ -22,8 +22,7 @@ const loadRPC = confjson => {
     fs = require('fs-extra'),
     getprocesses = require('getprocesses').default,
     electron = require('electron'),
-    packageJson = require('../package.json'),
-    reg = require('./regexs');
+    packageJson = require('../package.json');
 
   const { app, BrowserWindow, dialog, shell } = electron,
     {
