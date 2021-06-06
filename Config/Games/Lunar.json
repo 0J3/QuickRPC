@@ -1,8 +1,12 @@
 {
-    "Exe": ["Lunar Client (1.8.9-3dab21c/master).exe","Lunar Client.exe","Lunar Client (1.8.9).exe"],
-    "Prefix": "Playing",
-    "DisplayName": "Lunar Client",
-    "Enabled": true,
-    "Icon": "lunar",
-    "Priority": 7
+  "Exe": [
+    "Lunar Client \\((\\d\\.\\d?\\d\\.\\d?\\d)\\.\\.[0-z][0-z][0-z][0-z][0-z][0-z][0-z]\\)",
+    "java .*\\.lunarclient.*",
+    "Lunar Client"
+  ],
+  "Prefix": "Playing",
+  "DisplayName": "Lunar Client",
+  "Enabled": true,
+  "Icon": "lunar",
+  "Priority": 10
 }
