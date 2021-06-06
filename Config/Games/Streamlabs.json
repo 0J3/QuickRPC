@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/0J3/QuickRPC/main/schemas/Game.schema.json",
-  "Exe": ["Streamlabs OBS\\.exe", "Streamlabs OBS", "slobs"],
+  "Exe": ["Streamlabs OBS", "slobs"],
   "Prefix": "Running",
   "DisplayName": "Streamlabs OBS",
   "Enabled": true,

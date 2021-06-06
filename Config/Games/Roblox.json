@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/0J3/QuickRPC/main/schemas/Game.schema.json",
-  "Exe": ["RobloxPlayerBeta\\.exe"],
+  "Exe": ["RobloxPlayerBeta"],
   "Prefix": "Playing",
   "DisplayName": "Roblox",
   "Enabled": true,

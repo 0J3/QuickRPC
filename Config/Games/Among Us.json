@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/0J3/QuickRPC/main/schemas/Game.schema.json",
-  "Exe": ["Among Us\\.exe", "Among Us"],
+  "Exe": ["Among Us"],
   "Prefix": "Playing",
   "DisplayName": "Among Us",
   "Enabled": true,
