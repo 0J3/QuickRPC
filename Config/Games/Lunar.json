@@ -1,0 +1,8 @@
+{
+    "Exe": ["Lunar Client (1.8.9-3dab21c/master).exe","Lunar Client.exe","Lunar Client (1.8.9).exe"],
+    "Prefix": "Playing",
+    "DisplayName": "Lunar Client",
+    "Enabled": true,
+    "Icon": "lunar",
+    "Priority": 7
+}
