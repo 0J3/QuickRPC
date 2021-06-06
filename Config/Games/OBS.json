@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/0J3/QuickRPC/main/schemas/Game.schema.json",
-  "Exe": ["obs\\.exe", "obs"],
+  "Exe": ["obs(?!.json)"],
   "Prefix": "Running",
   "DisplayName": "OBS",
   "Enabled": true,

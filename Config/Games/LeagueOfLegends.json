@@ -1,9 +1,9 @@
 {
   "$schema": "https://raw.githubusercontent.com/0J3/QuickRPC/main/schemas/Game.schema.json",
-  "Exe": ["Asphalt9_w10_x86_rtl"],
+  "Exe": ["LeagueOfLegends(?!.json)"],
   "Prefix": "Playing",
-  "DisplayName": "Asphalt 9",
+  "DisplayName": "League Of Legends",
   "Enabled": true,
-  "Icon": "asphalt9",
+  "Icon": "league",
   "Priority": 10
 }

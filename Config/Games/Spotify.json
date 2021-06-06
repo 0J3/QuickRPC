@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/0J3/QuickRPC/main/schemas/Game.schema.json",
-  "Exe": ["Spotify"],
+  "Exe": ["Spotify(?!.json)"],
   "Prefix": "Listening to ",
   "DisplayName": "Music",
   "Enabled": true,

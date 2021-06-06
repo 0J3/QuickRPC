@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/0J3/QuickRPC/main/schemas/Game.schema.json",
-  "Exe": ["GenshinImpact"],
+  "Exe": ["GenshinImpact(?!.json)"],
   "Prefix": "Playing",
   "DisplayName": "Genshin Impact",
   "Enabled": true,

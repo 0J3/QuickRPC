@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/0J3/QuickRPC/main/schemas/Game.schema.json",
-  "Exe": ["TS2Prototype"],
+  "Exe": ["TS2Prototype(?!.json)"],
   "Prefix": "Playing",
   "DisplayName": "Train Simulator World 2",
   "Enabled": true,

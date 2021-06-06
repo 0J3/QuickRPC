@@ -79,6 +79,11 @@ const loadRPC = confjson => {
           const raw = element.rawCommandLine.toLowerCase();
 
           const check = cmd => {
+            if (
+              reg.test(cmd) &&
+              isFlag('allDump', 'detectedGameDump', 'allDebug')
+            )
+              dump('detectedGame.json', { name, game: element });
             return reg.test(cmd);
           };
 
@@ -220,6 +225,7 @@ const loadRPC = confjson => {
         },
       });
   };
+  if (isFlag('runUpdateVarsBeforeReady')) updateVars();
 
   const url = require('url');
 
