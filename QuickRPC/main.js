@@ -220,7 +220,6 @@ const loadRPC = confjson => {
         },
       });
   };
-  await updateVars();
 
   const url = require('url');
 
