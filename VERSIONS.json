@@ -1,4 +1,10 @@
 [
   "This file contains a list of versions that are accepted (no update required)",
-  "0.2.2"
+  "--- RELEASES      ---",
+  "0.2.2",
+  "0.2.3",
+  "--- CURRENT TESTS ---",
+  "0.2.3-1",
+  "0.2.3-2",
+  "0.2.3-3"
 ]
