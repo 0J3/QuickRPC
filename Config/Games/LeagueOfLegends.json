@@ -1,0 +1,8 @@
+{
+  "Exe": ["Asphalt9_w10_x86_rtl"],
+  "Prefix": "Playing",
+  "DisplayName": "Asphalt 9",
+  "Enabled": true,
+  "Icon": "asphalt9",
+  "Priority": 10
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Exe": {
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "Prefix": {
+      "type": "string"
+    },
+    "DisplayName": {
+      "type": "string"
+    },
+    "Enabled": {
+      "type": "boolean"
+    },
+    "Icon": {
+      "type": "string"
+    },
+    "Priority": {
+      "type": "integer"
+    }
+  },
+  "required": ["Exe", "Prefix", "DisplayName", "Enabled", "Priority"]
+}
