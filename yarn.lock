@@ -204,11 +204,6 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.17.0.tgz#3ba770047723b3eeb8dc9fca02cce8a7fb6378da"
   integrity sha512-w8VZUN/f7SSbvVReb9SWp6cJFevxb4/nkG65yLAya//98WgocKm5PLDAtSs5CtJJJM+kHmJjO/6mmYW4MHShZA==
 
-"@types/node@^15.6.0":
-  version "15.6.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-15.6.0.tgz#f0ddca5a61e52627c9dcb771a6039d44694597bc"
-  integrity sha512-gCYSfQpy+LYhOFTKAeE8BkyGqaxmlFxe+n4DKM6DR0wzw/HISUE/hAmkC/KT8Sw5PCJblqg062b3z9gucv3k0A==
-
 "@types/plist@^3.0.1":
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/@types/plist/-/plist-3.0.2.tgz#61b3727bba0f5c462fe333542534a0c3e19ccb01"
@@ -547,6 +542,11 @@ argparse@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/argparse/-/argparse-2.0.1.tgz#246f50f3ca78a3240f6c997e8a9bd1eac49e4b38"
   integrity sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==
+
+argsplit@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/argsplit/-/argsplit-1.0.5.tgz#9319a6ef63411716cfeb216c45ec1d13b35c5e99"
+  integrity sha1-kxmm72NBFxbP6yFsRewdE7NcXpk=
 
 arr-diff@^4.0.0:
   version "4.0.0"
@@ -2496,6 +2496,13 @@ get-value@^2.0.3, get-value@^2.0.6:
     lodash "^4.17.21"
     ms-wmic "https://github.com/0J3-2/node-ms-wmic.git"
     pidof "^1.0.2"
+
+getprocesses@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/getprocesses/-/getprocesses-1.1.1.tgz#33e9640475c231f2e904ea68a26fd8964ce2f4b3"
+  integrity sha512-0FmFw9uWHvDCRjiozJoL2O4/WH3putxji+OzPLmzoD0BnAq3UbYaLRFHNTE9w8S/Hv88b9RJRA9SicqcE4lq8w==
+  dependencies:
+    argsplit "^1.0.5"
 
 glob-parent@^3.1.0:
   version "3.1.0"

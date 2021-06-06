@@ -20,9 +20,10 @@ const loadRPC = confjson => {
   console.log('app start');
   const path = require('path'),
     fs = require('fs-extra'),
-    getpid = require('getpid'),
+    getprocesses = require('getprocesses').default,
     electron = require('electron'),
-    packageJson = require('../package.json');
+    packageJson = require('../package.json'),
+    reg = require('./regexs');
 
   const { app, BrowserWindow, dialog, shell } = electron,
     {
@@ -45,8 +46,14 @@ const loadRPC = confjson => {
   if (isFlag('noDump'))
     console.warn('All dumps are disabled. This is strongly discouraged!');
 
+  let processes = [];
+  const updateProcesses = async () => {
+    processes = await getprocesses();
+  };
+
   const checkIfProcessIsRunning = name => {
-    if (getFlagValue('gameLineOverwrite') == 'none') return;
+    // ANCHOR Check Process Is Running
+    if (getFlagValue('gameLineOverwrite') != 'none') return;
     if (typeof name == typeof []) {
       return new Promise(async res => {
         let v = false;
@@ -58,27 +65,35 @@ const loadRPC = confjson => {
       });
     } else
       return new Promise(res => {
-        getpid(name, (err, pid) => {
-          if (err) {
-            throw new Error(err);
-          }
+        name = name.toLowerCase();
+        const reg = new RegExp(name);
+        processes.forEach(element => {
+          const cmd = element.command.toLowerCase();
+          const raw = element.rawCommandLine.toLowerCase();
 
-          if (Array.isArray(pid)) {
+          const check = cmd => {
+            return reg.test(cmd);
+          };
+
+          const matches = cmd => {
+            return (
+              check(cmd, name) ||
+              check(cmd + '.exe', name) ||
+              check(cmd, name + '.exe')
+            );
+          };
+
+          if (matches(cmd) || matches(raw)) {
             res(true);
-          } else {
-            // Even if no errors occurred, pid may still be null/undefined if it wasn't found
-            if (pid) {
-              res(true);
-            } else {
-              res(false);
-            }
           }
         });
+        res(false);
       });
   };
 
   const getGames = () => {
-    if (getFlagValue('gameLineOverwrite') == 'none') return [];
+    // ANCHOR Get Games
+    if (getFlagValue('gameLineOverwrite') != 'none') return [];
 
     const gamesJSONList = fs.readdirSync(gamesFolder);
 
@@ -150,17 +165,25 @@ const loadRPC = confjson => {
       DisplayName: 'Nothing',
     };
 
-    if (getFlagValue('gameLineOverwrite') == 'none')
-      for (let index = 0; index < games.length; index++) {
-        const g = games[index];
+    if (getFlagValue('gameLineOverwrite') == 'none') {
+      await updateProcesses();
+      for (const i in games) {
+        if (Object.hasOwnProperty.call(games, i)) {
+          const g = games[i];
 
-        const v = await checkIfProcessIsRunning(g.Exe);
-        if (v) {
-          game = g;
-          break;
+          const v = await checkIfProcessIsRunning(g.Exe);
+          dump('gameCheck.json', {
+            game: g,
+            result: v,
+            next: games[i + 1] || 'none',
+          });
+          if (v) {
+            game = g;
+            break;
+          }
         }
       }
-    else
+    } else
       game = {
         Exe: ['OVERWRITE'],
         Prefix: '',
@@ -190,6 +213,7 @@ const loadRPC = confjson => {
         },
       });
   };
+  await updateVars();
 
   const url = require('url');
 
@@ -197,28 +221,25 @@ const loadRPC = confjson => {
 
   const axios = require('axios');
 
+  // ANCHOR Update Check
   const { data } = await axios({
-    url: 'https://api.github.com/repos/0J3/QuickRPC/git/refs/tags',
+    url: 'https://github.com/0J3/QuickRPC/raw/main/VERSIONS.json',
     method: 'GET',
     responseType: 'json',
   });
 
-  if (
-    data[data.length - 1].ref != 'refs/tags/' + packageJson.version &&
-    !isFlag('noUpdateCheck')
-  ) {
+  if (!data.includes(packageJson.version) && !isFlag('noUpdateCheck')) {
     console.log('UPDATE NEEDED');
     shell.openExternal('https://github.com/0J3/QuickRPC/releases/latest/');
     dialog.showErrorBox(
       'Update Required',
       'QuickRPC requires an update! Please download the latest installer from https://github.com/0J3/QuickRPC/releases/latest/'
     );
-    return process.exit(1);
+    return;
   }
 
   const createWindow = async () => {
-    // Update Checker
-
+    // ANCHOR Create Window
     mainWindow = new BrowserWindow({
       minWidth: 320,
       width: 380,
@@ -269,6 +290,7 @@ const loadRPC = confjson => {
   let lastAct = {};
 
   const setActivity = async () => {
+    // ANCHOR Set Activity
     if (!rpc || !mainWindow) {
       return;
     }
@@ -295,6 +317,7 @@ const loadRPC = confjson => {
     // https://discord.com/developers/applications/<application_id>/rich-presence/assets
     rpc.setActivity(act);
 
+    // Set Activity: Update Window
     mainWindow.webContents.executeJavaScript(
       `document.getElementById('CurrentQuote').innerHTML=decodeURIComponent("${encodeURIComponent(
         quote
@@ -306,6 +329,7 @@ const loadRPC = confjson => {
       )}")`
     );
 
+    // Dump Data
     if (isFlag('allDump', 'activityDump', 'allDebug'))
       dump('activity.json', act);
 
@@ -346,6 +370,11 @@ URL=https://media.nora.lgbt/hri/
 
     let interval;
     interval = setInterval(() => {
+      i++;
+      if (i > 15 || !mainWindow) {
+        clearInterval(interval);
+        return;
+      }
       const CONFIGFOLDER = confDir.split('\\').join('\\\\\\\\');
       mainWindow.webContents.executeJavaScript(
         `document.getElementById('openConf').href="JavaScript:require('child_process').exec(\\"${
@@ -354,14 +383,12 @@ URL=https://media.nora.lgbt/hri/
             : process.platform != 'darwin'
             ? `xdg-open \\\\\\"${CONFIGFOLDER}\\\\\\"`
             : ''
-        }\\",()=>{})"`
+        }\\",()=>{})"
+document.getElementById('VERSION').innerHTML='v${packageJson.version}'`
       );
-      i++;
-      if (i > 15) {
-        clearInterval(interval);
-      }
     }, 1e3);
 
+    // ANCHOR Update game list
     if (!isFlag('noUpdateGameList'))
       require('./updateGameList')(
         gamesFolder,
