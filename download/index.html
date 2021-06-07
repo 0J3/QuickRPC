@@ -9,8 +9,8 @@
 
   const platform = url.searchParams.get('platform');
   
-  if (!platform)return alert("No Platform Specified")
-  if (!format[platform])return alert("Invalid Platform")
+  if (!platform)throw alert("No Platform Specified")
+  if (!format[platform])throw alert("Invalid Platform")
   
   let version = url.searchParams.get('version');
   
