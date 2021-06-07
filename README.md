@@ -43,19 +43,25 @@ idk how to install snap files offhand just look it up ig
 
 ## Build Instructions
 
-### Downloading the shit
+### Downloading the QuickRPC Source Code
 
-1. Clone the repository (you know how; `git clone https://github.com/0J3/QuickRPC.git`)
-2. CD into the Directory: `cd QuickRPC`
-3. Install packages `yarn`
+1. Open a Terminal
+2. Clone the repository (you know how; `git clone https://github.com/0J3/QuickRPC.git`)
+3. CD into the Directory: `cd QuickRPC`
+4. Install packages `yarn`
 
-### Running the shit
+### Running QuickRPC from local code
 
-`yarn start`
+1. Ensure your terminal is in the root directory of QuickRPC
+2. Run `yarn start`
 
-### Building the shit
+### Building QuickRPC
 
-`yarn dist`
+1. Ensure your terminal is in the root directory of QuickRPC
+2. Run `yarn dist`
+
+### Developer Notes
+See [notes.md](/notes.md)
 
 ---
 
