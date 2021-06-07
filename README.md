@@ -33,13 +33,13 @@ If Windows SmartScreen complains, click `Read More` (or similar), then `Run Anyw
 
 The only reason it's complaining is because i didn't sign my code with a code-signing license.
 
-#### Linux: Snap
-
-idk how to install snap files offhand just look it up ig
-
-#### Linux: Deb
+#### Linux (.deb)
 
 Open a Terminal, `cd` into the directory (usually `cd ~/Downloads`), and run `sudo apt install quickrpc_<VERSION>_amd64.deb`
+
+#### Linux (.snap)
+
+idk how to install snap files offhand just look it up ig
 
 ## Build Instructions
 
