@@ -114,6 +114,7 @@ If none are found, the program might break idk
    > 1. The flag must be on its own line in the `.flags` file
    > 2. If the path to the .flags file, or the .flags file itself, doesn't exist, create it
    > 3. noUpdateCheck will entirely disable update checking, not just disable enforcing usage of the latest version.
+   >   -> If you still want update checking, but not enforcement, use `--noUpdateEnforcement`
 3. If you are getting an error every aproximately 15 seconds, try [this](#disabling-game-detection-altogether-021-or-above)
 4. If you don't want preset games to be replaced on each program restart (new ones are still added on restart), use [this](#disabling-overwriting-games-012-or-above)
 
