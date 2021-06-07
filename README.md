@@ -35,7 +35,7 @@ The only reason it's complaining is because i didn't sign my code with a code-si
 
 #### Linux (.deb)
 
-Open a Terminal, `cd` into the directory (usually `cd ~/Downloads`), and run `sudo apt install quickrpc_<VERSION>_amd64.deb`
+Open a Terminal, `cd` into the directory (usually `cd ~/Downloads`), and run `sudo apt install ./quickrpc_<VERSION>_amd64.deb`
 
 #### Linux (.snap)
 
