@@ -1,9 +1,9 @@
 {
   "$schema": "https://raw.githubusercontent.com/0J3/QuickRPC/main/schemas/Game.schema.json",
-  "Exe": ["javaw\\.exe .*minecraft.*", "javaw .*minecraft.*"],
+  "Exe": ["javaw\\.(exe) .*minecraft.*", "javaw .*minecraft.*"],
   "Prefix": "Playing",
   "DisplayName": "Minecraft",
   "Enabled": true,
   "Icon": "minecraft",
-  "Priority": 4
+  "Priority": 5
 }

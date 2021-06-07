@@ -1,0 +1,8 @@
+{
+  "Exe": ["systemd", "explorer"],
+  "DisplayName": "Nothing",
+  "Prefix": "Playing",
+  "Enabled": true,
+  "Icon": "nothingness",
+  "Priority": 0
+}

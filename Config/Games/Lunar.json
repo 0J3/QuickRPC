@@ -12,5 +12,5 @@
   "DisplayName": "Lunar Client",
   "Enabled": true,
   "Icon": "lunar",
-  "Priority": 10
+  "Priority": 9
 }

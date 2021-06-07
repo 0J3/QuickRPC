@@ -5,5 +5,5 @@
   "DisplayName": "Streamlabs OBS",
   "Enabled": true,
   "Icon": "streamlabs",
-  "Priority": 1
+  "Priority": 2
 }

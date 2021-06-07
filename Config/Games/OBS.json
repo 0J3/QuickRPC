@@ -5,5 +5,5 @@
   "DisplayName": "OBS",
   "Enabled": true,
   "Icon": "obs",
-  "Priority": 0
+  "Priority": 1
 }

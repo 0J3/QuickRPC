@@ -26,7 +26,8 @@
       "type": "string"
     },
     "Priority": {
-      "type": "integer"
+      "type": "integer",
+      "minimum": 1
     }
   },
   "required": ["Exe", "Prefix", "DisplayName", "Enabled", "Priority"]
