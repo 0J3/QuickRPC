@@ -23,7 +23,7 @@
   
     document.location.replace(format[platform].split("VERSION").join(version))
 
-    try{window.close()}catch(e){document.body.innerHTML="<h1>Thanks for downloading QuickRPC</h1>"}
+    setTimeout(()=>{try{window.close()}catch(e){document.body.innerHTML="<h1>Thanks for downloading QuickRPC</h1>"}},500)
   })()
 </script>
 <noscript>Please enable scripts for this site to work!</noscript>
