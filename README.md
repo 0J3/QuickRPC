@@ -132,5 +132,7 @@ If none are found, the program might break idk
 
 If you have an issue, whether you need support, or there's a bug, just file an [Issue](https://github.com/0J3/QuickRPC/issues/new). Detail in the original post is optional, but would be good if provided.
 
-## Styles (for github pages - please ignore)
-<style>body{background:#0d1117;color:#fff}</style>
+<style>
+  /*This is for github pages - please ignore*/
+  body{background:#0d1117;color:#fff}
+</style>
