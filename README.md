@@ -21,9 +21,9 @@ Once you have the following, you can proceed to [Installing QuickRPC from prebui
 
 To install QuickRPC from prebuilt installers, first, download the appropriate file from the below:
 
-[Windows](https://0j3.github.io/QuickRPC/download?platform=win)<br/>
-[Linux (.deb)](https://0j3.github.io/QuickRPC/download?platform=deb)<br/>
-[Linux (.snap)](https://0j3.github.io/QuickRPC/download?platform=snap)<br/>
+[Windows](https://quickrpc.nora.lgbt/download?platform=win)<br/>
+[Linux (.deb)](https://quickrpc.nora.lgbt/download?platform=deb)<br/>
+[Linux (.snap)](https://quickrpc.nora.lgbt/download?platform=snap)<br/>
 
 #### Windows
 
