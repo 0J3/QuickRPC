@@ -1,8 +1,10 @@
-# QuickRPC
+# [QuickRPC](https://quickrpc.nora.lgbt/)
 
 (Forked from [https://github.com/discordjs/RPC](https://github.com/discordjs/RPC) - All `var`/`function` keywords are to blame on that)<br/>
 
 ## Installation
+
+It is recommended that you use [this](https://quickrpc.nora.lgbt/download) guide for installing
 
 ### Dependencies
 
