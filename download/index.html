@@ -1,0 +1,28 @@
+<script>
+  const format={
+    win:"https://github.com/0J3/QuickRPC/releases/download/VERSION/QuickRPC.Setup.VERSION.exe"
+  }
+  
+  const url = new URL(
+    document.location.href
+  );
+
+  const platform = url.searchParams.get('platform');
+  
+  if (!platform)return alert("No Platform Specified")
+  if (!format[platform])return alert("Invalid Platform")
+  
+  let version = url.searchParams.get('version');
+  
+  (async()=>{
+    if (!version) {
+      const versions = (await fetch("https://api.github.com/repos/0J3/QuickRPC/git/refs/tags", {})).json();
+      version=versions[versions.length-1].replace("refs/tags/","");
+    }
+  
+    document.location.replace(format[platform].split("VERSION").join(version))
+
+    try{window.close()}catch(e){document.body.innerHTML="<h1>Thanks for downloading QuickRPC</h1>"}
+  })()
+</script>
+<noscript>Please enable scripts for this site to work!</noscript>
