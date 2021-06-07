@@ -14,10 +14,11 @@
   
   let version = url.searchParams.get('version');
   
+  
   (async()=>{
     if (!version) {
-      const versions = (await fetch("https://api.github.com/repos/0J3/QuickRPC/git/refs/tags", {})).json();
-      version=versions[versions.length-1].replace("refs/tags/","");
+      const versions = await (await fetch("https://api.github.com/repos/0J3/QuickRPC/git/refs/tags", {})).json()
+      version=versions[versions.length-1].ref.replace("refs/tags/","");
     }
   
     document.location.replace(format[platform].split("VERSION").join(version))
