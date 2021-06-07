@@ -1,3 +1,4 @@
+<title>Downloading QuickRPC</title>
 <script>
   (async()=>{
     const format={
@@ -23,7 +24,7 @@
 
     document.location.replace(format[platform].split("VERSION").join(version))
 
-    setTimeout(()=>{try{window.close()}catch(e){document.body.innerHTML="<h1>Thanks for downloading QuickRPC</h1>"}},500)
+    setTimeout(()=>{try{window.close()}catch(e){};window.history.back()},500)
   })()
 </script>
 <noscript>Please enable scripts for this site to work!</noscript>
