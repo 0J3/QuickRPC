@@ -62,9 +62,6 @@ idk how to install snap files offhand just look it up ig
 1. Ensure your terminal is in the root directory of QuickRPC
 2. Run `yarn dist`
 
-### Developer Notes
-See [developers.md](/developers.md)
-
 ---
 
 Now that you've installed it (regardless how), you can move on to [Configuration](#configuration)
