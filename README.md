@@ -1,10 +1,10 @@
-# [QuickRPC](https://quickrpc.nora.lgbt/)
+# [QuickRPC](https://quickrpc-v0.nora.lgbt/)
 
 (Forked from [https://github.com/discordjs/RPC](https://github.com/discordjs/RPC) - All `var`/`function` keywords are to blame on that)<br/>
 
 ## Installation
 
-It is recommended that you use [this](https://quickrpc.nora.lgbt/download) guide for installing
+It is recommended that you use [this](https://quickrpc-v0.nora.lgbt/download) guide for installing
 
 ### Dependencies
 
@@ -23,9 +23,9 @@ Once you have the following, you can proceed to [Installing QuickRPC from prebui
 
 To install QuickRPC from prebuilt installers, first, download the appropriate file from the below:
 
-[Windows](https://quickrpc.nora.lgbt/download?platform=win)<br/>
-[Linux (.deb)](https://quickrpc.nora.lgbt/download?platform=deb)<br/>
-[Linux (.snap)](https://quickrpc.nora.lgbt/download?platform=snap)<br/>
+[Windows](https://quickrpc-v0.nora.lgbt/download?platform=win)<br/>
+[Linux (.deb)](https://quickrpc-v0.nora.lgbt/download?platform=deb)<br/>
+[Linux (.snap)](https://quickrpc-v0.nora.lgbt/download?platform=snap)<br/>
 
 #### Windows
 
