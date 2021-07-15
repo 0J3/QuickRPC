@@ -239,7 +239,11 @@ const loadRPC = confjson => {
     responseType: 'json',
   });
 
-  if (!data.includes(packageJson.version) && !isFlag('noUpdateCheck')) {
+  if (
+    !data.includes(packageJson.version) &&
+    !isFlag('noUpdateCheck') &&
+    !isFlag('noUpdateEnforcement')
+  ) {
     console.log('UPDATE NEEDED');
     shell.openExternal('https://github.com/0J3/QuickRPC/releases/latest/');
     dialog.showErrorBox(
@@ -263,6 +267,7 @@ const loadRPC = confjson => {
         worldSafeExecuteJavaScript: false,
         contextIsolation: false,
       },
+      transparent: true,
     });
 
     mainWindow.loadURL(
@@ -280,6 +285,13 @@ const loadRPC = confjson => {
     mainWindow.setMenuBarVisibility(false);
     mainWindow.setAlwaysOnTop(true, 'screen-saver'); // screen-saver to go ontop of fullscreen windows
     mainWindow.setOpacity(0.5);
+
+    mainWindow.webContents.on('new-window', (e, url) => {
+      if (url.startsWith('http')) {
+        e.preventDefault();
+        shell.openExternal(url);
+      }
+    });
   };
 
   app.on('window-all-closed', () => {
@@ -369,13 +381,35 @@ URL=https://media.nora.lgbt/hri/
     );
   };
 
+  // ANCHOR Optional Update Checks
+  const optionalUpdateCheck = () => {
+    axios({
+      url: 'https://api.github.com/repos/0J3/QuickRPC/git/refs/tags',
+      method: 'GET',
+      responseType: 'json',
+    }).then(({ data }) => {
+      if (
+        data[data.length - 1].ref != 'refs/tags/' + packageJson.version &&
+        !isFlag('noUpdateCheck')
+      ) {
+        mainWindow.webContents.executeJavaScript(
+          `document.getElementById('update').hidden=false`
+        );
+      } else {
+        mainWindow.webContents.executeJavaScript(
+          `document.getElementById('update').hidden=true`
+        );
+      }
+    });
+  };
+
   rpc.on('ready', () => {
     console.log('Ready');
     setActivity();
 
-    setInterval(() => {
-      setActivity();
-    }, 15e3);
+    setInterval(setActivity, 15e3);
+
+    setInterval(optionalUpdateCheck, 60e3);
 
     let i = 0;
 
@@ -398,6 +432,8 @@ URL=https://media.nora.lgbt/hri/
 document.getElementById('VERSION').innerHTML='v${packageJson.version}'`
       );
     }, 1e3);
+
+    optionalUpdateCheck();
 
     // ANCHOR Update game list
     if (!isFlag('noUpdateGameList'))
